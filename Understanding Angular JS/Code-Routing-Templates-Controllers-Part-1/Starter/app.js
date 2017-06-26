@@ -26,7 +26,7 @@ myApp.config(function($routeProvider){
 myApp.service("nameService" , function() {
     
     var self = this;
-    self.name = "Surya Prabhakar";
+    self.name = "Dwayne Johnson";
     
     self.nameLength =  function() { 
         return self.name.length();
@@ -43,7 +43,7 @@ myApp.controller("mainController" , ["$scope" , function($scope){
 
 myApp.controller("secondController" , ["$scope" , "$routeParams", "nameService", function($scope , $routeParams, nameService){
     
-    $scope.prathyu = "Prathyusha Mavoori";
+    $scope.animal = "Dave Batistas";
     $scope.name = nameService.name;
     $scope.num = $routeParams.num || 1;
     
@@ -57,7 +57,7 @@ myApp.controller("secondController" , ["$scope" , "$routeParams", "nameService",
 
 myApp.controller("thirdController" , ["$scope" , "nameService", function($scope, nameService){
     
-    $scope.jeevan = "Jeevan Tej Saladi";
+    $scope.person = "Sachin Tendulkar";
     $scope.name = nameService.name;
     
     $scope.$watch("name", function() { 
@@ -68,3 +68,12 @@ myApp.controller("thirdController" , ["$scope" , "nameService", function($scope,
     
 }]);
 
+myApp.directive("searchResult" , function() {
+   
+    return {
+      restrict : "AECM",
+      template : "<div class=\"list-group\"><a href=\"#\" class=\"list-group-item active\"><h4 class=\"list-group-item-heading\">Search Results</h4><p class=\"list-group-item-text\">555, Newyork, USA - 555</p></a></div>"  ,
+      replace : true
+    };
+    
+});
