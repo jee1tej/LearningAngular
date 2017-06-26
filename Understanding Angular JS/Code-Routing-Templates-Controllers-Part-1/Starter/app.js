@@ -23,6 +23,17 @@ myApp.config(function($routeProvider){
     
 });
 
+myApp.service("nameService" , function() {
+    
+    var self = this;
+    self.name = "Surya Prabhakar";
+    
+    self.nameLength =  function() { 
+        return self.name.length();
+    }
+    
+})
+
 
 myApp.controller("mainController" , ["$scope" , function($scope){
     
@@ -30,14 +41,30 @@ myApp.controller("mainController" , ["$scope" , function($scope){
     
 }]);
 
-myApp.controller("secondController" , ["$scope" , "$routeParams",function($scope , $routeParams){
+myApp.controller("secondController" , ["$scope" , "$routeParams", "nameService", function($scope , $routeParams, nameService){
     
     $scope.prathyu = "Prathyusha Mavoori";
+    $scope.name = nameService.name;
     $scope.num = $routeParams.num || 1;
+    
+    $scope.$watch("name", function() { 
+        
+        nameService.name = $scope.name;
+    
+    });
     
 }]);
 
-myApp.controller("thirdController" , ["$scope" , function($scope){
+myApp.controller("thirdController" , ["$scope" , "nameService", function($scope, nameService){
     
-    $scope.jeevan = "Jeevan Tej Saladi";    
+    $scope.jeevan = "Jeevan Tej Saladi";
+    $scope.name = nameService.name;
+    
+    $scope.$watch("name", function() { 
+        
+        nameService.name = $scope.name;
+    
+    });
+    
 }]);
+
